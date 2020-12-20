@@ -1,31 +1,38 @@
-import React, { useRef } from 'react';
+import React, { PureComponent, RefObject } from 'react';
+import { TouchableOpacity, Text, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import styles from './styles';
 
-const Camera = () => {
-    const cameraRef = useRef(null);
-    console.log('rendering camera!')
+interface Props { }
 
-    return (
-        <>
-            <RNCamera
-                ref={cameraRef}
-                style={{
-                    flex: 1,
-                    justifyContent: 'space-between',
-                }}
-                type={'back'}
-                flashMode={'auto'}
-                autoFocus={'on'}
-                androidCameraPermissionOptions={{
-                    title: 'Permission to use camera',
-                    message: 'We need your permission to use your camera',
-                    buttonPositive: 'Ok',
-                    buttonNegative: 'Cancel',
-                }}
-            >
-            </RNCamera>
-        </>
-    );
+export default class Camera extends PureComponent<Props> {
+    private cameraRef: RefObject<RNCamera>;
+
+    public constructor(props: Props) {
+        super(props);
+
+        this.cameraRef = React.createRef();
+    }
+
+    public render() {
+        return (
+            <View style={styles.container}>
+                <RNCamera
+                    ref={this.cameraRef}
+                    style={{
+                        flex: 1,
+                    }}
+                    type={'back'}
+                    flashMode={'auto'}
+                    autoFocus={'on'}
+                >
+                    <View style={styles.bottomRow}>
+                        <TouchableOpacity style={styles.takePicButton}>
+                            <Text>Click</Text>
+                        </TouchableOpacity>
+                    </View>
+                </RNCamera>
+            </View>
+        );
+    }
 };
-
-export default Camera;
