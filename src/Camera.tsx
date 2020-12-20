@@ -14,6 +14,18 @@ export default class Camera extends PureComponent<Props> {
         this.cameraRef = React.createRef();
     }
 
+    private takePicture = async () => {
+        const picture = await this.cameraRef.current?.takePictureAsync({
+            pauseAfterCapture: false,
+        });
+
+        console.log(picture?.uri);
+    }
+
+    private takePictures = async () => {
+        await Promise.all(Array.from(Array(3), () => this.takePicture()));
+    }
+
     public render() {
         return (
             <View style={styles.container}>
@@ -27,7 +39,7 @@ export default class Camera extends PureComponent<Props> {
                     autoFocus={'on'}
                 >
                     <View style={styles.bottomRow}>
-                        <TouchableOpacity style={styles.takePicButton}>
+                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.takePictures}>
                             <Text>Click</Text>
                         </TouchableOpacity>
                     </View>
