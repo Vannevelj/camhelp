@@ -139,7 +139,7 @@ export default class Camera extends NavigationComponent<Props, State> {
             flex: 1,
           }}
           type={this.state.type}
-          flashMode={'auto'}
+          flashMode={'off'}
           autoFocus={'on'}>
           {this.renderTimer()}
           {this.renderControls()}
