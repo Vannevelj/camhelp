@@ -9,7 +9,6 @@ import {
 } from 'react-native-navigation';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Props as PickerProps} from '../Picker/Picker';
 import * as Sentry from '@sentry/react-native';
 
 interface Props extends NavigationComponentProps {}
@@ -132,19 +131,15 @@ export default class Camera extends NavigationComponent<Props, State> {
 
   public render() {
     return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={this.cameraRef}
-          style={{
-            flex: 1,
-          }}
-          type={this.state.type}
-          flashMode={'off'}
-          autoFocus={'on'}>
-          {this.renderTimer()}
-          {this.renderControls()}
-        </RNCamera>
-      </View>
+      <RNCamera
+        ref={this.cameraRef}
+        style={styles.container}
+        type={this.state.type}
+        flashMode={'off'}
+        autoFocus={'on'}>
+        {this.renderTimer()}
+        {this.renderControls()}
+      </RNCamera>
     );
   }
 }
