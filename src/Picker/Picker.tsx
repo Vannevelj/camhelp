@@ -13,6 +13,7 @@ import {sliderWidth, itemWidth} from '../SliderEntry/styles';
 import {PermissionsAndroid, Platform} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {Notice} from '../Notice/Notice';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -46,6 +47,14 @@ export default class Picker extends NavigationComponent<Props, State> {
     return <SliderEntry uri={data.item} even={(data.index + 1) % 2 === 0} />;
   }
 
+  private goToCamera = () => {
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: 'Camera',
+      },
+    });
+  };
+
   private save = async () => {
     this.setState({isSaving: true});
     if (Platform.OS === 'android' && !(await this.hasAndroidPermission())) {
@@ -55,12 +64,7 @@ export default class Picker extends NavigationComponent<Props, State> {
     const tag = this.props.images[this.state.selectedIndex];
     await CameraRoll.save(tag);
     this.setState({isSaving: false});
-
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: 'Camera',
-      },
-    });
+    this.goToCamera();
   };
 
   private hasAndroidPermission = async () => {
@@ -96,7 +100,7 @@ export default class Picker extends NavigationComponent<Props, State> {
             containerCustomStyle={styles.carouselContainer}
             autoplay={true}
             autoplayDelay={500}
-            autoplayInterval={3000}
+            autoplayInterval={4000}
             onSnapToItem={(index) => this.setState({selectedIndex: index})}
           />
         </View>
@@ -105,6 +109,13 @@ export default class Picker extends NavigationComponent<Props, State> {
           onPress={this.save}
           style={styles.saveButtonContainer}>
           <Text style={styles.saveButtonText}>Save</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.goToCamera}
+          style={styles.retryButtonContainer}>
+          <Icon name="autorenew" size={30} color="red" />
+          <Text style={styles.retryButtonText}>New picture</Text>
         </TouchableOpacity>
       </View>
     );
