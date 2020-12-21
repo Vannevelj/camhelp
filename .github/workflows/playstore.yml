@@ -19,9 +19,9 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x ./android/gradlew
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./android/gradlew build
       - name: Build Release APK
-        run: ./gradlew assembleRelease
+        run: ./android/gradlew assembleRelease
 
       # - name: Upload Android Release to Play Store
       #   uses: r0adkll/upload-google-play@v1
