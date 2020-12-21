@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     },
     takePicButton: {
         alignSelf: 'center'
+    },
+    timer: {
+        alignSelf: 'center',
+        marginTop: '50%',
     }
 });
 

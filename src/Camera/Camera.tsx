@@ -7,10 +7,12 @@ import styles from './styles';
 interface Props extends NavigationComponentProps { }
 interface State {
     type: 'back' | 'front';
+    countdown?: number;
 }
 
 export default class Camera extends NavigationComponent<Props, State> {
     private cameraRef: RefObject<RNCamera>;
+    private timer?: NodeJS.Timeout;
 
     public constructor(props: Props) {
         super(props);
@@ -58,6 +60,47 @@ export default class Camera extends NavigationComponent<Props, State> {
         });
     }
 
+    private startTimer = () => {
+        this.setState({ countdown: 5 });
+        this.timer = setInterval(this.countDown, 1000);
+    }
+
+    private countDown = async () => {
+        console.log(`counting down: ${this.state.countdown}`);
+        if (this.state.countdown === undefined || this.timer === undefined) {
+            return;
+        }
+
+        if (this.state.countdown === 0) {
+            console.log('clearing interval')
+            clearInterval(this.timer);
+            this.timer === undefined;
+            this.setState({
+                countdown: undefined
+            });
+            console.log('taking pics');
+            await this.takePictures();
+
+            return;
+        }
+
+        this.setState({
+            countdown: this.state.countdown - 1
+        });
+    }
+
+    private renderTimer = () => {
+        if (!this.state.countdown) {
+            return null;
+        }
+
+        return (
+            <View style={styles.timer}>
+                <Text>{this.state.countdown.toString()}</Text>
+            </View>
+        )
+    }
+
     public render() {
         return (
             <View style={styles.container}>
@@ -71,12 +114,14 @@ export default class Camera extends NavigationComponent<Props, State> {
                     autoFocus={'on'}
 
                 >
+                    {this.renderTimer()}
+
                     <View style={styles.bottomRow}>
                         <TouchableOpacity style={styles.takePicButton} onPressIn={this.flip}>
                             <Text>Flip</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.takePictures}>
+                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.startTimer}>
                             <Text>Click</Text>
                         </TouchableOpacity>
                     </View>
