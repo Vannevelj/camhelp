@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Navigation, NavigationComponent, NavigationComponentProps } from 'react-native-navigation';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Props as PickerProps } from '../Picker/Picker';
 
 interface Props extends NavigationComponentProps { }
@@ -122,11 +123,11 @@ export default class Camera extends NavigationComponent<Props, State> {
 
                     <View style={styles.bottomRow}>
                         <TouchableOpacity style={styles.takePicButton} onPressIn={this.flip}>
-                            <Text>Flip</Text>
+                            <Icon name="flip-camera-ios" size={30} color="white" />
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.takePicButton} onPressIn={this.startTimer}>
-                            <Text>Click</Text>
+                            <Icon name="photo-camera" size={50} color="red" />
                         </TouchableOpacity>
                     </View>
                 </RNCamera>
