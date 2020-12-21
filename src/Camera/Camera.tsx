@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { Navigation, NavigationComponent, NavigationComponentProps } from 'react-native-navigation';
 import styles from './styles';
+import { Props as PickerProps } from '../Picker/Picker';
 
 interface Props extends NavigationComponentProps { }
 interface State {
@@ -55,6 +56,9 @@ export default class Camera extends NavigationComponent<Props, State> {
                             text: 'Picker'
                         }
                     }
+                },
+                passProps: {
+                    images: [first?.uri, second?.uri, third?.uri]
                 }
             }
         });

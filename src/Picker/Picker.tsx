@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import styles from './styles';
 import { NavigationComponentProps, NavigationComponent } from 'react-native-navigation';
 
-interface Props extends NavigationComponentProps {
+export interface Props extends NavigationComponentProps {
     images: string[];
 }
 
@@ -17,11 +17,15 @@ export default class Picker extends NavigationComponent<Props> {
         this.carouselRef = React.createRef();
     }
 
-    private renderItem = (item: { item: string }) => (
-        <TouchableOpacity onPress={() => { }}>
-            <Text>Select</Text>
-        </TouchableOpacity>
-    );
+    private renderItem = (item: { item: string }) => {
+        console.log(item);
+
+        return (
+            <TouchableOpacity onPress={() => { }}>
+                <Text>Select</Text>
+            </TouchableOpacity>
+        );
+    };
 
     public render() {
         return (
@@ -31,6 +35,8 @@ export default class Picker extends NavigationComponent<Props> {
                     data={this.props.images}
                     renderItem={this.renderItem}
                     layout="default"
+                    sliderWidth={100}
+                    itemWidth={90}
                 />
             </View>
         );
