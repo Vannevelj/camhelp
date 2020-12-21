@@ -9,23 +9,23 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   saveButtonContainer: {
-    backgroundColor: "#009688",
+    backgroundColor: '#009688',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
     width: '95%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   saveButtonText: {
     fontSize: 18,
-    color: "#fff",
-    fontWeight: "bold",
-    alignSelf: "center",
-    textTransform: "uppercase",
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
   },
   retryButtonContainer: {
     marginTop: 30,
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
   },
   retryButtonText: {
     fontSize: 18,
-    color: "#fff",
-    fontWeight: "bold",
-    alignSelf: "center",
-    textTransform: "uppercase",
-    marginLeft: 10
-  }
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+    marginLeft: 10,
+  },
 });
 
 export default styles;
