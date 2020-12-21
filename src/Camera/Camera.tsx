@@ -10,6 +10,7 @@ import {
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Props as PickerProps} from '../Picker/Picker';
+import * as Sentry from '@sentry/react-native';
 
 interface Props extends NavigationComponentProps {}
 interface State {
@@ -50,23 +51,22 @@ export default class Camera extends NavigationComponent<Props, State> {
   };
 
   private takePictures = async () => {
-    var first = await this.takePicture();
-    var second = await this.takePicture();
-    var third = await this.takePicture();
+    try {
+      var first = await this.takePicture();
+      var second = await this.takePicture();
+      var third = await this.takePicture();
 
-    console.log('all done');
-    console.log(first);
-    console.log(second);
-    console.log(third);
-
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: 'Picker',
-        passProps: {
-          images: [first?.uri, second?.uri, third?.uri],
+      Navigation.push(this.props.componentId, {
+        component: {
+          name: 'Picker',
+          passProps: {
+            images: [first?.uri, second?.uri, third?.uri],
+          },
         },
-      },
-    });
+      });
+    } catch (err) {
+      Sentry.captureException(err);
+    }
   };
 
   private startTimer = () => {

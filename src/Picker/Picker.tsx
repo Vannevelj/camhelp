@@ -14,9 +14,8 @@ import {PermissionsAndroid, Platform} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {Notice} from '../Notice/Notice';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ScreenOrientation, {
-  OrientationType,
-} from 'react-native-orientation-locker';
+import ScreenOrientation from 'react-native-orientation-locker';
+import * as Sentry from '@sentry/react-native';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -73,22 +72,31 @@ export default class Picker extends NavigationComponent<Props, State> {
     }
 
     const tag = this.props.images[this.state.selectedIndex];
-    await CameraRoll.save(tag);
-    this.setState({isSaving: false});
-    throw new Error('jeroen testing');
-    this.goToCamera();
+    try {
+      await CameraRoll.save(tag);
+      this.goToCamera();
+    } catch (err) {
+      Sentry.captureException(err);
+    } finally {
+      this.setState({isSaving: false});
+    }
   };
 
   private hasAndroidPermission = async () => {
-    const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+    try {
+      const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
 
-    const hasPermission = await PermissionsAndroid.check(permission);
-    if (hasPermission) {
-      return true;
+      const hasPermission = await PermissionsAndroid.check(permission);
+      if (hasPermission) {
+        return true;
+      }
+
+      const status = await PermissionsAndroid.request(permission);
+      return status === 'granted';
+    } catch (err) {
+      Sentry.captureException(err);
+      return false;
     }
-
-    const status = await PermissionsAndroid.request(permission);
-    return status === 'granted';
   };
 
   public render() {
