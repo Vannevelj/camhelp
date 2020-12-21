@@ -75,6 +75,7 @@ export default class Picker extends NavigationComponent<Props, State> {
     const tag = this.props.images[this.state.selectedIndex];
     await CameraRoll.save(tag);
     this.setState({isSaving: false});
+    throw new Error('jeroen testing');
     this.goToCamera();
   };
 
