@@ -22,17 +22,7 @@ jobs:
         run: yarn
       - name: Build typescript project
         run: yarn compile
-
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Run linter
         run: yarn lint
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Run unit tests
         run: yarn test
