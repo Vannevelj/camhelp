@@ -8,9 +8,9 @@ function wp(percentage: number) {
   return Math.round(value);
 }
 
-const slideHeight = viewportHeight * 0.36;
-const slideWidth = wp(75);
-const itemHorizontalMargin = wp(2);
+const slideHeight = viewportHeight * 0.70;
+const slideWidth = wp(85);
+const itemHorizontalMargin = wp(0.1);
 
 export const sliderWidth = viewportWidth;
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
@@ -64,35 +64,5 @@ export default StyleSheet.create({
   },
   radiusMaskEven: {
     backgroundColor: 'black',
-  },
-  textContainer: {
-    justifyContent: 'center',
-    paddingTop: 20 - entryBorderRadius,
-    paddingBottom: 20,
-    paddingHorizontal: 16,
-    backgroundColor: 'white',
-    borderBottomLeftRadius: entryBorderRadius,
-    borderBottomRightRadius: entryBorderRadius,
-  },
-  textContainerEven: {
-    backgroundColor: 'black',
-  },
-  title: {
-    color: 'black',
-    fontSize: 13,
-    fontWeight: 'bold',
-    letterSpacing: 0.5,
-  },
-  titleEven: {
-    color: 'white',
-  },
-  subtitle: {
-    marginTop: 6,
-    color: 'gray',
-    fontSize: 12,
-    fontStyle: 'italic',
-  },
-  subtitleEven: {
-    color: 'rgba(255, 255, 255, 0.7)',
   },
 });

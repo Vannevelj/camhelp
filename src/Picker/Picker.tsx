@@ -1,6 +1,6 @@
 import React, {RefObject} from 'react';
 import Carousel from 'react-native-snap-carousel';
-import {Button, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import {
   NavigationComponentProps,
@@ -77,30 +77,29 @@ export default class Picker extends NavigationComponent<Props, State> {
   public render() {
     return (
       <View style={styles.container}>
-        <Carousel
-          ref={this.carouselRef}
-          data={this.props.images}
-          renderItem={this.renderItem}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
-          firstItem={0}
-          inactiveSlideScale={0.94}
-          inactiveSlideOpacity={0.7}
-          // containerCustomStyle={styles.slider}
-          // contentContainerCustomStyle={styles.sliderContentContainer}
-          autoplay={true}
-          autoplayDelay={500}
-          autoplayInterval={3000}
-          onSnapToItem={(index) => this.setState({selectedIndex: index})}
-        />
+        <View>
+          <Carousel
+            ref={this.carouselRef}
+            data={this.props.images}
+            renderItem={this.renderItem}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            firstItem={0}
+            inactiveSlideScale={0.94}
+            inactiveSlideOpacity={0.7}
+            containerCustomStyle={styles.carouselContainer}
+            autoplay={true}
+            autoplayDelay={500}
+            autoplayInterval={3000}
+            onSnapToItem={(index) => this.setState({selectedIndex: index})}
+          />
+        </View>
 
-        <Button
+        <TouchableOpacity
           onPress={this.save}
-          title="Save"
-          color="green"
-          accessibilityLabel="Save"
-          disabled={this.state.isSaving}
-        />
+          style={styles.saveButtonContainer}>
+          <Text style={styles.saveButtonText}>Save</Text>
+        </TouchableOpacity>
       </View>
     );
   }
