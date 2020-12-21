@@ -1,0 +1,36 @@
+name: Build, Lint, Test
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.4.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install yarn
+        run: npm install yarn -g
+      - name: Build project
+        run: yarn build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run linter
+        run: yarn lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run unit tests
+        run: yarn test
