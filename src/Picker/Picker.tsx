@@ -12,6 +12,7 @@ import SliderEntry from '../SliderEntry/SliderEntry';
 import {sliderWidth, itemWidth} from '../SliderEntry/styles';
 import {PermissionsAndroid, Platform} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
+import {Notice} from '../Notice/Notice';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -78,6 +79,11 @@ export default class Picker extends NavigationComponent<Props, State> {
     return (
       <View style={styles.container}>
         <View>
+          <Notice
+            message={
+              'Select the image you wish to save. Afterwards it will be available in your photo gallery.'
+            }
+          />
           <Carousel
             ref={this.carouselRef}
             data={this.props.images}
