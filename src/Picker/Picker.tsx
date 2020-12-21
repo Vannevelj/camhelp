@@ -14,6 +14,9 @@ import {PermissionsAndroid, Platform} from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {Notice} from '../Notice/Notice';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ScreenOrientation, {
+  OrientationType,
+} from 'react-native-orientation-locker';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -41,6 +44,14 @@ export default class Picker extends NavigationComponent<Props, State> {
       selectedIndex: 0,
       isSaving: false,
     };
+  }
+
+  public componentDidMount() {
+    ScreenOrientation.lockToPortrait();
+  }
+
+  public componentWillUnmount() {
+    ScreenOrientation.unlockAllOrientations();
   }
 
   private renderItem(data: {item: string; index: number}) {

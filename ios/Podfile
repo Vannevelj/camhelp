@@ -10,6 +10,8 @@ target 'ShakyCamera' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
   target 'ShakyCameraTests' do
     inherit! :complete
     # Pods for testing
