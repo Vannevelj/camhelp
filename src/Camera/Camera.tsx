@@ -5,14 +5,26 @@ import { Navigation, NavigationComponent, NavigationComponentProps } from 'react
 import styles from './styles';
 
 interface Props extends NavigationComponentProps { }
+interface State {
+    type: 'back' | 'front';
+}
 
-export default class Camera extends NavigationComponent<Props> {
+export default class Camera extends NavigationComponent<Props, State> {
     private cameraRef: RefObject<RNCamera>;
 
     public constructor(props: Props) {
         super(props);
 
         this.cameraRef = React.createRef();
+        this.state = {
+            type: 'back'
+        }
+    }
+
+    private flip = () => {
+        this.setState({
+            type: this.state.type === 'back' ? 'front' : 'back'
+        });
     }
 
     private takePicture = () => {
@@ -54,11 +66,16 @@ export default class Camera extends NavigationComponent<Props> {
                     style={{
                         flex: 1,
                     }}
-                    type={'back'}
+                    type={this.state.type}
                     flashMode={'auto'}
                     autoFocus={'on'}
+
                 >
                     <View style={styles.bottomRow}>
+                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.flip}>
+                            <Text>Flip</Text>
+                        </TouchableOpacity>
+
                         <TouchableOpacity style={styles.takePicButton} onPressIn={this.takePictures}>
                             <Text>Click</Text>
                         </TouchableOpacity>
