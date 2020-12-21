@@ -2,7 +2,7 @@ import React, { RefObject } from 'react';
 import Carousel from 'react-native-snap-carousel';
 import { View } from 'react-native';
 import styles from './styles';
-import { NavigationComponentProps, NavigationComponent } from 'react-native-navigation';
+import { NavigationComponentProps, NavigationComponent, Options } from 'react-native-navigation';
 import SliderEntry from './SliderEntry';
 import { sliderWidth, itemWidth } from './SliderEntry.styles';
 
@@ -11,6 +11,12 @@ export interface Props extends NavigationComponentProps {
 }
 
 export default class Picker extends NavigationComponent<Props> {
+    static options: Options = {
+        topBar: {
+            visible: false
+        },
+    };
+
     private carouselRef: RefObject<Carousel<string>>;
 
     public constructor(props: Props) {

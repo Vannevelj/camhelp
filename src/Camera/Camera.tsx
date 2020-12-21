@@ -1,7 +1,7 @@
 import React, { RefObject } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import { Navigation, NavigationComponent, NavigationComponentProps } from 'react-native-navigation';
+import { Navigation, NavigationComponent, NavigationComponentProps, Options } from 'react-native-navigation';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Props as PickerProps } from '../Picker/Picker';
@@ -13,6 +13,12 @@ interface State {
 }
 
 export default class Camera extends NavigationComponent<Props, State> {
+    static options: Options = {
+        topBar: {
+            visible: false,
+        },
+    };
+
     private cameraRef: RefObject<RNCamera>;
     private timer?: NodeJS.Timeout;
 
@@ -51,13 +57,6 @@ export default class Camera extends NavigationComponent<Props, State> {
         Navigation.push(this.props.componentId, {
             component: {
                 name: 'Picker',
-                options: {
-                    topBar: {
-                        title: {
-                            text: 'Picker'
-                        }
-                    }
-                },
                 passProps: {
                     images: [first?.uri, second?.uri, third?.uri]
                 }
