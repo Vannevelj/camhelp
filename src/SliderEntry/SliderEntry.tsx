@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
-import styles from './SliderEntry.styles';
+import styles from './styles';
 
 interface Props {
     uri: string;

@@ -3,8 +3,8 @@ import Carousel from 'react-native-snap-carousel';
 import { Button, View } from 'react-native';
 import styles from './styles';
 import { NavigationComponentProps, NavigationComponent, Options, Navigation } from 'react-native-navigation';
-import SliderEntry from './SliderEntry';
-import { sliderWidth, itemWidth } from './SliderEntry.styles';
+import SliderEntry from '../SliderEntry/SliderEntry';
+import { sliderWidth, itemWidth } from '../SliderEntry/styles';
 import { PermissionsAndroid, Platform } from "react-native";
 import CameraRoll from "@react-native-community/cameraroll";
 
