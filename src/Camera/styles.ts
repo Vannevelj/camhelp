@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         flexDirection: 'row',
         justifyContent: 'center',
-
     },
     takePicButton: {
         alignSelf: 'center',
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
         padding: 40
     },
     timerText: {
-        fontSize: 30,
+        fontSize: 80,
         color: 'black',
         fontWeight: 'bold',
     }

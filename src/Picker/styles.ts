@@ -3,17 +3,16 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 10,
         backgroundColor: '#fff',
-        justifyContent: 'space-between',
-        flexDirection: 'column'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     slider: {
         marginTop: 15,
-        overflow: 'visible' // for custom animations
+        overflow: 'visible',
     },
     sliderContentContainer: {
-        paddingVertical: 10 // for custom animation
+        paddingVertical: 10,
     },
 });
 
