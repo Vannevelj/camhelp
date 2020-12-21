@@ -2,9 +2,11 @@ import React, { RefObject } from 'react';
 import Carousel from 'react-native-snap-carousel';
 import { Button, View } from 'react-native';
 import styles from './styles';
-import { NavigationComponentProps, NavigationComponent, Options } from 'react-native-navigation';
+import { NavigationComponentProps, NavigationComponent, Options, Navigation } from 'react-native-navigation';
 import SliderEntry from './SliderEntry';
 import { sliderWidth, itemWidth } from './SliderEntry.styles';
+import { PermissionsAndroid, Platform } from "react-native";
+import CameraRoll from "@react-native-community/cameraroll";
 
 export interface Props extends NavigationComponentProps {
     images: string[];
@@ -12,6 +14,7 @@ export interface Props extends NavigationComponentProps {
 
 interface State {
     selectedIndex: number;
+    isSaving: boolean;
 }
 
 export default class Picker extends NavigationComponent<Props, State> {
@@ -28,7 +31,8 @@ export default class Picker extends NavigationComponent<Props, State> {
 
         this.carouselRef = React.createRef();
         this.state = {
-            selectedIndex: 0
+            selectedIndex: 0,
+            isSaving: false,
         }
     }
 
@@ -41,8 +45,33 @@ export default class Picker extends NavigationComponent<Props, State> {
         );
     }
 
-    private save = () => {
-        console.log('saving image');
+    private save = async () => {
+        this.setState({ isSaving: true });
+        if (Platform.OS === "android" && !(await this.hasAndroidPermission())) {
+            return;
+        }
+
+        const tag = this.props.images[this.state.selectedIndex];
+        await CameraRoll.save(tag);
+        this.setState({ isSaving: false });
+
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: 'Camera'
+            }
+        });
+    }
+
+    private hasAndroidPermission = async () => {
+        const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+
+        const hasPermission = await PermissionsAndroid.check(permission);
+        if (hasPermission) {
+            return true;
+        }
+
+        const status = await PermissionsAndroid.request(permission);
+        return status === 'granted';
     }
 
     public render() {
@@ -70,6 +99,7 @@ export default class Picker extends NavigationComponent<Props, State> {
                     title="Save"
                     color="green"
                     accessibilityLabel="Save"
+                    disabled={this.state.isSaving}
                 />
             </View>
         );
