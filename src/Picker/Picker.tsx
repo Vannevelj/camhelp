@@ -2,12 +2,13 @@ import React, { PureComponent, RefObject } from 'react';
 import Carousel from 'react-native-snap-carousel';
 import { TouchableOpacity, Text, View } from 'react-native';
 import styles from './styles';
+import { NavigationComponentProps, NavigationComponent } from 'react-native-navigation';
 
-interface Props {
+interface Props extends NavigationComponentProps {
     images: string[];
 }
 
-export default class Picker extends PureComponent<Props> {
+export default class Picker extends NavigationComponent<Props> {
     private carouselRef: RefObject<Carousel<string>>;
 
     public constructor(props: Props) {

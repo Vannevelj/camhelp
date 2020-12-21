@@ -1,11 +1,12 @@
-import React, { PureComponent, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import { Navigation, NavigationComponent, NavigationComponentProps } from 'react-native-navigation';
 import styles from './styles';
 
-interface Props { }
+interface Props extends NavigationComponentProps { }
 
-export default class Camera extends PureComponent<Props> {
+export default class Camera extends NavigationComponent<Props> {
     private cameraRef: RefObject<RNCamera>;
 
     public constructor(props: Props) {
@@ -30,6 +31,19 @@ export default class Camera extends PureComponent<Props> {
         console.log(first);
         console.log(second);
         console.log(third);
+
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: 'Picker',
+                options: {
+                    topBar: {
+                        title: {
+                            text: 'Picker'
+                        }
+                    }
+                }
+            }
+        });
     }
 
     public render() {
