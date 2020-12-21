@@ -10,14 +10,29 @@ const styles = StyleSheet.create({
     },
     bottomRow: {
         marginTop: 'auto',
-        marginBottom: 50
+        marginBottom: 50,
+        flexDirection: 'row',
+        justifyContent: 'center',
+
     },
     takePicButton: {
-        alignSelf: 'center'
+        alignSelf: 'center',
+    },
+    flipCameraButton: {
+        alignSelf: 'center',
     },
     timer: {
         alignSelf: 'center',
         marginTop: '50%',
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 4,
+        padding: 40
+    },
+    timerText: {
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
     }
 });
 

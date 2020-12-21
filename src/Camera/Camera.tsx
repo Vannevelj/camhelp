@@ -76,7 +76,7 @@ export default class Camera extends NavigationComponent<Props, State> {
             return;
         }
 
-        if (this.state.countdown === 0) {
+        if (this.state.countdown === 1) {
             console.log('clearing interval')
             clearInterval(this.timer);
             this.timer === undefined;
@@ -101,7 +101,25 @@ export default class Camera extends NavigationComponent<Props, State> {
 
         return (
             <View style={styles.timer}>
-                <Text>{this.state.countdown.toString()}</Text>
+                <Text style={styles.timerText}>{this.state.countdown.toString()}</Text>
+            </View>
+        )
+    }
+
+    private renderControls = () => {
+        if (this.state.countdown) {
+            return null;
+        }
+
+        return (
+            <View style={styles.bottomRow}>
+                <TouchableOpacity style={styles.flipCameraButton} onPressIn={this.flip}>
+                    <Icon name="flip-camera-ios" size={30} color="white" />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.takePicButton} onPressIn={this.startTimer}>
+                    <Icon name="photo-camera" size={80} color="red" />
+                </TouchableOpacity>
             </View>
         )
     }
@@ -117,19 +135,9 @@ export default class Camera extends NavigationComponent<Props, State> {
                     type={this.state.type}
                     flashMode={'auto'}
                     autoFocus={'on'}
-
                 >
                     {this.renderTimer()}
-
-                    <View style={styles.bottomRow}>
-                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.flip}>
-                            <Icon name="flip-camera-ios" size={30} color="white" />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.takePicButton} onPressIn={this.startTimer}>
-                            <Icon name="photo-camera" size={50} color="red" />
-                        </TouchableOpacity>
-                    </View>
+                    {this.renderControls()}
                 </RNCamera>
             </View>
         );
