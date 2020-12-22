@@ -136,7 +136,8 @@ export default class Camera extends NavigationComponent<Props, State> {
         style={styles.container}
         type={this.state.type}
         flashMode={'off'}
-        autoFocus={'on'}>
+        autoFocus={'on'}
+        captureAudio={false}>
         {this.renderTimer()}
         {this.renderControls()}
       </RNCamera>
