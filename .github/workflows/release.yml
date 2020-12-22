@@ -54,7 +54,7 @@ jobs:
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          path: CHANGELOG.md
+          path: ./CHANGELOG.md
 
       # - name: Push a tag
       #   id: push_tag
