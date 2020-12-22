@@ -33,3 +33,4 @@
 #         with:
 #           name: app-debug.apk
 #           path: android/app/build/outputs/apk/debug/
+#           if-no-files-found: error
