@@ -1,28 +1,28 @@
-name: Build, Lint, Test
+# name: Build, Lint, Test
 
-on: pull_request
+# on: pull_request
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [15.4.0]
+#     strategy:
+#       matrix:
+#         node-version: [15.4.0]
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install NodeJS ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install yarn
-        run: npm install yarn -g
-      - name: Install dependencies
-        run: yarn
-      - name: Build typescript project
-        run: yarn compile
-      - name: Run linter
-        run: yarn lint
-      - name: Run unit tests
-        run: yarn test
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Install NodeJS ${{ matrix.node-version }}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - name: Install yarn
+#         run: npm install yarn -g
+#       - name: Install dependencies
+#         run: yarn
+#       - name: Build typescript project
+#         run: yarn compile
+#       - name: Run linter
+#         run: yarn lint
+#       - name: Run unit tests
+#         run: yarn test
