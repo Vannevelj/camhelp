@@ -104,7 +104,7 @@ jobs:
           asset_name: app-release-signed.apk
           asset_content_type: application/executable
 
-   playstore_release:
+  playstore_release:
     runs-on: ubuntu-latest
     needs: build
     steps:
