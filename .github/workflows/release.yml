@@ -99,7 +99,7 @@ jobs:
           release_name: ${{ steps.changelog_reader.outputs.version }}
           body: ${{ steps.changelog_reader.outputs.changes }}
           prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-          draft: true
+          draft: false
       - name: Download APK
         uses: actions/download-artifact@v2
         with:
