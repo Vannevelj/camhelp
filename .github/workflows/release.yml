@@ -113,9 +113,11 @@ jobs:
         with:
           name: app-release-signed.apk
           path: artifacts/
+      - name: Create service_account.json
+        run: echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT }}' > service_account.json
       - name: Upload Android Release to Play Store
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+          serviceAccountJson: service_account.json
           packageName: com.zenzizenzi.camhelp
           releaseFiles: artifacts/app-release-signed.apk
