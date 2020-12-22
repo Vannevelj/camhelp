@@ -42,7 +42,7 @@ jobs:
       - name: Increment the Android version code
         uses: chkfung/android-version-actions@v1.1
         with:
-          gradlePath: app/build.gradle
+          gradlePath: android/app/build.gradle
           versionCode: ${{github.run_number}}
           versionName: ${{steps.changelog_reader.outputs.version}}
       - name: Build Release APK
