@@ -30,6 +30,21 @@ jobs:
         run: yarn
       - name: Make Gradle executable
         run: chmod +x ./android/gradlew
+      - name: Get version from CHANGELOG.md
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          path: ./CHANGELOG.md
+      - name: Changelog version
+        run: echo '${{ steps.changelog_reader.outputs.version }}'
+      - name: Android version code
+        run: echo '${{github.run_number}}'
+      - name: Increment the Android version code
+        uses: chkfung/android-version-actions@v1.1
+        with:
+          gradlePath: app/build.gradle
+          versionCode: ${{github.run_number}}
+          versionName: ${{steps.changelog_reader.outputs.version}}
       - name: Build Release APK
         run: cd android && ./gradlew assembleRelease
       - uses: r0adkll/sign-android-release@v1
