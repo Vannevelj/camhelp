@@ -103,7 +103,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
           asset_name: app-release.apk
           asset_content_type: application/executable
 
