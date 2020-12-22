@@ -33,15 +33,15 @@ jobs:
       - name: Build Release APK
         run: cd android && ./gradlew assembleRelease
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
       - name: Upload changelog
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: CHANGELOG.md
-          path: ./
+          name: CHANGELOG
+          path: CHANGELOG.md
           retention-days: 1
 
   github_release:
