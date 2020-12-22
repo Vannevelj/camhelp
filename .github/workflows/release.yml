@@ -36,7 +36,7 @@ jobs:
         name: Sign APK
         id: sign_app
         with:
-          releaseDirectory: artifacts/
+          releaseDirectory: app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY_JKS_BASE64 }}
           alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEY_KEYSTORE_PASSWORD }}
