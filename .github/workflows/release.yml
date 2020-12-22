@@ -104,18 +104,18 @@ jobs:
           asset_name: app-release-signed.apk
           asset_content_type: application/executable
 
-  #  playstore_release:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #   - name: Upload Android Release to Play Store
-  #     uses: r0adkll/upload-google-play@v1
-  #     with:
-  #       serviceAccountJson: ${{ GOOGLE_SERVICE_ACCOUNT }}
-  #       packageName: com.zenzizenzi.camhelp
-  #       releaseFile: ${{ SIGNED_RELEASE_FILE}}
-  #       track: production
-  #       inAppUpdatePriority: 0
-  #       userFraction: 1
-  #     whatsNewDirectory: distribution/whatsnew
-  #       mappingFile: app/build/outputs/mapping/release/mapping.txt
+   playstore_release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download APK
+        uses: actions/download-artifact@v2
+        with:
+          name: app-release-signed.apk
+          path: artifacts/
+    - name: Upload Android Release to Play Store
+      uses: r0adkll/upload-google-play@v1
+      with:
+        serviceAccountJson: ${{ GOOGLE_SERVICE_ACCOUNT }}
+        packageName: com.zenzizenzi.camhelp
+        releaseFiles: artifacts/app-release-signed.apk
