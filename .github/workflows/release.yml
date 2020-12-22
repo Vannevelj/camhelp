@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: CHANGELOG.md
-          path: CHANGELOG.md
+          path: ./CHANGELOG.md
           retention-days: 1
 
   github_release:
