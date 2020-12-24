@@ -35,7 +35,7 @@ jobs:
         uses: jsdaniell/create-json@1.1.2
         with:
           name: buildinfo.json"
-          json: '{"sentryDsn":"${{ secrets.CREDENTIALS_JSON }}"}'
+          json: '{"sentryDsn":"${{ secrets.SENTRY_DSN }}"}'
       - name: Get version from CHANGELOG.md
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2

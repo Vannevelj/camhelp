@@ -31,7 +31,7 @@ jobs:
         uses: jsdaniell/create-json@1.1.2
         with:
           name: buildinfo.json"
-          json: '{"sentryDsn":"${{ secrets.CREDENTIALS_JSON }}"}'
+          json: '{"sentryDsn":"${{ secrets.SENTRY_DSN }}"}'
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug
       - name: Upload Artifact
