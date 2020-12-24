@@ -3,19 +3,15 @@ name: Build, Lint, Test React Native
 on: pull_request
 
 jobs:
-  build:
+  build-rn:
+    name: Compile and lint Typescript
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [15.4.0]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Install NodeJS ${{ matrix.node-version }}
+      - name: Install NodeJS 15.4.0
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 15.4.0
       - name: Install yarn
         run: npm install yarn -g
       - name: Install dependencies
