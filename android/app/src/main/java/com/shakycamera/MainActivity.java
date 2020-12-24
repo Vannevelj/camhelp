@@ -1,4 +1,4 @@
-package com.shakycamera;
+package com.zenzizenzi.camhelp;
 
 import com.reactnativenavigation.NavigationActivity;
 import android.content.Intent;

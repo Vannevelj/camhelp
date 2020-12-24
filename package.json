@@ -1,5 +1,5 @@
 {
-  "name": "ShakyCamera",
+  "name": "camhelp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,8 +8,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "build": "yarn lint && yarn compile",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "yarn lint --fix",
+    "build": "yarn lint:fix && yarn compile",
     "go": "yarn build && yarn android"
   },
   "dependencies": {

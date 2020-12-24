@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 
-target 'ShakyCamera' do
+target 'camhelp' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
@@ -12,7 +12,7 @@ target 'ShakyCamera' do
 
   pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
 
-  target 'ShakyCameraTests' do
+  target 'camhelpTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -24,14 +24,5 @@ target 'ShakyCamera' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
-  end
-end
-
-target 'ShakyCamera-tvOS' do
-  # Pods for ShakyCamera-tvOS
-
-  target 'ShakyCamera-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end
