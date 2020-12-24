@@ -26,6 +26,12 @@ jobs:
         run: yarn
       - name: Make Gradle executable
         run: chmod +x ./android/gradlew
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: buildinfo.json"
+          json: '{"sentryDsn":"${{ secrets.CREDENTIALS_JSON }}"}'
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug
       - name: Upload Artifact
