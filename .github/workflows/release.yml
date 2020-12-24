@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  build-release-apk:
     runs-on: ubuntu-latest
 
     strategy:

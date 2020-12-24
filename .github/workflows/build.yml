@@ -3,7 +3,7 @@ name: Build, Lint, Test React Native
 on: pull_request
 
 jobs:
-  build:
+  build-rn:
     runs-on: ubuntu-latest
 
     strategy:

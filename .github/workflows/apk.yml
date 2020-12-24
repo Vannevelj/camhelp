@@ -3,7 +3,7 @@ name: Attach debug build
 on: pull_request
 
 jobs:
-  build:
+  build-debug-apk:
     runs-on: ubuntu-latest
 
     strategy:
