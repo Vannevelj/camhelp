@@ -137,7 +137,14 @@ export default class Camera extends NavigationComponent<Props, State> {
         type={this.state.type}
         flashMode={'off'}
         autoFocus={'on'}
-        captureAudio={false}>
+        captureAudio={false}
+        androidCameraPermissionOptions={{
+          title: 'Permission to use camera',
+          message:
+            'We need your permission to use your camera. The app does not work without this.',
+          buttonPositive: 'Ok',
+          buttonNegative: 'Cancel',
+        }}>
         {this.renderTimer()}
         {this.renderControls()}
       </RNCamera>
