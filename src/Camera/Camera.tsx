@@ -97,6 +97,13 @@ export default class Camera extends NavigationComponent<Props, State> {
     });
   };
 
+  private onCameraMountError = (error: {message: string}) => {
+    console.error(
+      `An error occurred while mounting the camera: ${error.message}`,
+    );
+    Sentry.captureMessage(error.message);
+  };
+
   private renderTimer = () => {
     if (!this.state.countdown) {
       return null;
@@ -139,6 +146,7 @@ export default class Camera extends NavigationComponent<Props, State> {
         autoFocus={'on'}
         captureAudio={false}
         useNativeZoom={true}
+        onMountError={this.onCameraMountError}
         androidCameraPermissionOptions={{
           title: 'Permission to use camera',
           message:
