@@ -71,6 +71,7 @@ jobs:
           if-no-files-found: error
 
   github_release:
+    name: Create Github tag & release
     runs-on: ubuntu-latest
     needs: build-release-apk
     steps:
@@ -118,9 +119,26 @@ jobs:
           asset_content_type: application/executable
 
   playstore_release:
+    name: Release to Play Store
     runs-on: ubuntu-latest
     needs: build-release-apk
     steps:
+      - name: Download CHANGELOG
+        uses: actions/download-artifact@v2
+        with:
+          name: CHANGELOG.md
+          path: artifacts/
+      - name: Get changes from CHANGELOG.md
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          path: artifacts/CHANGELOG.md
+      - name: Create Play Store release notes
+        uses: finnp/create-file-action@1.0.0
+          env:
+            FILE_NAME: "whatsnew/whatsnew-en-GB"
+            FILE_DATA: ${{ steps.changelog_reader.outputs.changes }}
+
       - name: Download APK
         uses: actions/download-artifact@v2
         with:
@@ -132,3 +150,4 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
           packageName: com.zenzizenzi.camhelp
           releaseFiles: artifacts/app-release-signed.apk
+          whatsNewDirectory: whatsnew
