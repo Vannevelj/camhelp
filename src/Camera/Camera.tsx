@@ -138,6 +138,7 @@ export default class Camera extends NavigationComponent<Props, State> {
         flashMode={'off'}
         autoFocus={'on'}
         captureAudio={false}
+        useNativeZoom={true}
         androidCameraPermissionOptions={{
           title: 'Permission to use camera',
           message:
