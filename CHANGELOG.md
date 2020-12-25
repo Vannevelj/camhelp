@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.1.0] - 2020-12-25
+
+- Improved the release process by automatically including release notes
+
 ## [1.0.1] - 2020-12-24
 
 Added the correct app icons to the android app.
