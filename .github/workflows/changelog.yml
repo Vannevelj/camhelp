@@ -26,3 +26,13 @@ jobs:
             echo "::error ::tag $TAG exists already"
             exit 1
           fi
+      - name: Get changes from CHANGELOG.md
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          path: artifacts/CHANGELOG.md
+      - name: Create Play Store release notes
+        uses: finnp/create-file-action@1.0.0
+          env:
+            FILE_NAME: "whatsnew/whatsnew-en-GB"
+            FILE_DATA: ${{ steps.changelog_reader.outputs.changes }}
