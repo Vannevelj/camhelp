@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Create Play Store release notes
-        uses: DamianReeves/write-file-action
+        uses: DamianReeves/write-file-action@v1.0
         with:
           path: 'whatsnew/whatsnew-en-GB'
           contents: ${{ steps.changelog_reader.outputs.changes }}
