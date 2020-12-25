@@ -26,8 +26,10 @@ jobs:
             echo "::error ::tag $TAG exists already"
             exit 1
           fi
+
       - name: Create Play Store release notes
-        uses: finnp/create-file-action@1.0.0
-        env:
-          FILE_NAME: 'whatsnew/whatsnew-en-GB'
-          FILE_DATA: ${{ steps.changelog_reader.outputs.changes }}
+        uses: DamianReeves/write-file-action
+        with:
+          path: 'whatsnew/whatsnew-en-GB'
+          contents: ${{ steps.changelog_reader.outputs.changes }}
+          write-mode: overwrite
