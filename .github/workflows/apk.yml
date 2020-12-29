@@ -1,4 +1,4 @@
-name: Attach debug build
+name: Attach apk builds
 
 on: pull_request
 
