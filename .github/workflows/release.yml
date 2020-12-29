@@ -45,8 +45,6 @@ jobs:
           gradlePath: android/app/build.gradle
           versionCode: ${{github.run_number}}
           versionName: ${{steps.changelog_reader.outputs.version}}
-      - name: Generate Release bundle
-        run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
       - name: Build Release APK
         run: cd android && ./gradlew assembleRelease
       - uses: r0adkll/sign-android-release@v1
