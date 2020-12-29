@@ -3,8 +3,8 @@ name: Attach debug build
 on: pull_request
 
 jobs:
-  build-debug-apk:
-    name: Build the DEBUG .apk
+  build-apk:
+    name: Build the .apk
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

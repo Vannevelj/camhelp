@@ -138,25 +138,26 @@ export default class Camera extends NavigationComponent<Props, State> {
 
   public render() {
     return (
-      <RNCamera
-        ref={this.cameraRef}
-        style={styles.container}
-        type={this.state.type}
-        flashMode={'off'}
-        autoFocus={'on'}
-        captureAudio={false}
-        useNativeZoom={true}
-        onMountError={this.onCameraMountError}
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message:
-            'We need your permission to use your camera. The app does not work without this.',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}>
-        {this.renderTimer()}
-        {this.renderControls()}
-      </RNCamera>
+      // <RNCamera
+      //   ref={this.cameraRef}
+      //   style={styles.container}
+      //   type={this.state.type}
+      //   flashMode={'off'}
+      //   autoFocus={'on'}
+      //   captureAudio={false}
+      //   useNativeZoom={true}
+      //   onMountError={this.onCameraMountError}
+      //   androidCameraPermissionOptions={{
+      //     title: 'Permission to use camera',
+      //     message:
+      //       'We need your permission to use your camera. The app does not work without this.',
+      //     buttonPositive: 'Ok',
+      //     buttonNegative: 'Cancel',
+      //   }}>
+      //   {this.renderTimer()}
+      //   {this.renderControls()}
+      // </RNCamera>
+      <Text>hello</Text>
     );
   }
 }
