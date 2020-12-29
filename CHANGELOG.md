@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.2.1] - 2020-12-29
+
+- Reverted to a lower Gradle version to ensure RN Release building works correctly
+
 ## [1.2.0] - 2020-12-29
 
 - The app now actually works in a Release build
