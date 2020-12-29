@@ -7,9 +7,9 @@ import Picker from './src/Picker/Picker';
 import * as Sentry from '@sentry/react-native';
 
 if (!__DEV__) {
-  // Sentry.init({
-  //   dsn: buildinfo.sentryDsn,
-  // });
+  Sentry.init({
+    dsn: buildinfo.sentryDsn,
+  });
 }
 
 Navigation.registerComponent('Camera', () => Camera);
