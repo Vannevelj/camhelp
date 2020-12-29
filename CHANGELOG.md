@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.2.0] - 2020-12-29
+
+- The app now actually works in a Release build
+
 ## [1.1.0] - 2020-12-25
 
 - We will now pre-face the camera screen by mentioning we require access to the camera
