@@ -35,8 +35,8 @@ jobs:
           name: app-debug.apk
           path: android/app/build/outputs/apk/debug/
           if-no-files-found: error
-      # - name: Generate Release bundle
-      #   run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
+      - name: Generate Release bundle
+        run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
       - name: Build Release APK
         run: cd android && ./gradlew assembleRelease
       - name: Upload Release Artifact
