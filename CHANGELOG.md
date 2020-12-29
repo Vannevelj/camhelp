@@ -2,6 +2,11 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.2.2] - 2020-12-29
+
+- Removed unnecessary bundle file from repo
+- Added a README
+
 ## [1.2.1] - 2020-12-29
 
 - Reverted to a lower Gradle version to ensure RN Release building works correctly
