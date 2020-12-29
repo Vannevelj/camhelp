@@ -1,10 +1,10 @@
-name: Attach debug build
+name: Attach apk builds
 
 on: pull_request
 
 jobs:
-  build-debug-apk:
-    name: Build the DEBUG .apk
+  build-apk:
+    name: Build the .apk
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,9 +29,19 @@ jobs:
           json: '{"sentryDsn":"${{ secrets.SENTRY_DSN }}"}'
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug
-      - name: Upload Artifact
+      - name: Upload Debug Artifact
         uses: actions/upload-artifact@v2
         with:
           name: app-debug.apk
           path: android/app/build/outputs/apk/debug/
+          if-no-files-found: error
+      - name: Generate Release bundle
+        run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle
+      - name: Build Release APK
+        run: cd android && ./gradlew assembleRelease
+      - name: Upload Release Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
           if-no-files-found: error
