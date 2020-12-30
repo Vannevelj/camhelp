@@ -1,45 +1,45 @@
-# name: Attach apk builds
+name: Attach apk builds
 
-# on: pull_request
+on: pull_request
 
-# jobs:
-#   build-apk:
-#     name: Build the .apk
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: set up JDK 1.8
-#         uses: actions/setup-java@v1
-#         with:
-#           java-version: 1.8
-#       - name: Install NodeJS 15.4.0
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: 15.4.0
-#       - name: Install yarn
-#         run: npm install yarn -g
-#       - name: Install dependencies
-#         run: yarn
-#       - name: Make Gradle executable
-#         run: chmod +x ./android/gradlew
-#       - name: create buildinfo.json
-#         uses: jsdaniell/create-json@1.1.2
-#         with:
-#           name: buildinfo.json
-#           json: '{"sentryDsn":"${{ secrets.SENTRY_DSN }}"}'
-#       - name: Build Debug APK
-#         run: cd android && ./gradlew assembleDebug
-#       - name: Upload Debug Artifact
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: app-debug.apk
-#           path: android/app/build/outputs/apk/debug/
-#           if-no-files-found: error
-#       - name: Build Release APK
-#         run: cd android && ./gradlew assembleRelease
-#       - name: Upload Release Artifact
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: app-release.apk
-#           path: android/app/build/outputs/apk/release/
-#           if-no-files-found: error
+jobs:
+  build-apk:
+    name: Build the .apk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install NodeJS 15.4.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.4.0
+      - name: Install yarn
+        run: npm install yarn -g
+      - name: Install dependencies
+        run: yarn
+      - name: Make Gradle executable
+        run: chmod +x ./android/gradlew
+      - name: create buildinfo.json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: buildinfo.json
+          json: '{"sentryDsn":"${{ secrets.SENTRY_DSN }}"}'
+      - name: Build Debug APK
+        run: cd android && ./gradlew assembleDebug
+      - name: Upload Debug Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/
+          if-no-files-found: error
+      - name: Build Release APK
+        run: cd android && ./gradlew assembleRelease
+      - name: Upload Release Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
+          if-no-files-found: error
