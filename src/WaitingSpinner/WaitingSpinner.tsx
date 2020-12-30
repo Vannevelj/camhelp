@@ -1,0 +1,32 @@
+import React from 'react';
+import {FunctionComponent} from 'react';
+import {Text} from 'react-native';
+import styles from './styles';
+import overlay from './loader.json';
+
+// TODO: REPLACE WHEN THIS PR IS MERGED: https://github.com/vikrantnegi/react-native-animated-loader/pull/8
+import AnimatedLoader from './AnimatedLoader';
+
+interface Props {
+  visible: boolean;
+}
+
+// Animation source: https://lottiefiles.com/8447-loader-animation
+const WaitingSpinner: FunctionComponent<Props> = ({visible}) => (
+  <>
+    {visible && (
+      <>
+        <AnimatedLoader
+          visible={visible}
+          overlayColor="rgba(255,255,255,0.75)"
+          source={overlay}
+          animationStyle={styles.overlay}
+          speed={0.75}>
+          <Text style={styles.message}>Taking pictures...</Text>
+        </AnimatedLoader>
+      </>
+    )}
+  </>
+);
+
+export default WaitingSpinner;

@@ -10,11 +10,13 @@ import {
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Sentry from '@sentry/react-native';
+import WaitingSpinner from '../WaitingSpinner/WaitingSpinner';
 
 interface Props extends NavigationComponentProps {}
 interface State {
   type: 'back' | 'front';
   countdown?: number;
+  isTakingPictures: boolean;
 }
 
 export default class Camera extends NavigationComponent<Props, State> {
@@ -33,6 +35,7 @@ export default class Camera extends NavigationComponent<Props, State> {
     this.cameraRef = React.createRef();
     this.state = {
       type: 'back',
+      isTakingPictures: false,
     };
   }
 
@@ -51,6 +54,8 @@ export default class Camera extends NavigationComponent<Props, State> {
 
   private takePictures = async () => {
     try {
+      this.setState({isTakingPictures: true});
+      console.log('yes, taking pictures');
       var first = await this.takePicture();
       var second = await this.takePicture();
       var third = await this.takePicture();
@@ -65,6 +70,9 @@ export default class Camera extends NavigationComponent<Props, State> {
       });
     } catch (err) {
       Sentry.captureException(err);
+    } finally {
+      this.setState({isTakingPictures: false});
+      console.log('no, not taking pictures');
     }
   };
 
@@ -138,25 +146,28 @@ export default class Camera extends NavigationComponent<Props, State> {
 
   public render() {
     return (
-      <RNCamera
-        ref={this.cameraRef}
-        style={styles.container}
-        type={this.state.type}
-        flashMode={'off'}
-        autoFocus={'on'}
-        captureAudio={false}
-        useNativeZoom={true}
-        onMountError={this.onCameraMountError}
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message:
-            'We need your permission to use your camera. The app does not work without this.',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}>
-        {this.renderTimer()}
-        {this.renderControls()}
-      </RNCamera>
+      <>
+        <WaitingSpinner visible={this.state.isTakingPictures} />
+        <RNCamera
+          ref={this.cameraRef}
+          style={styles.container}
+          type={this.state.type}
+          flashMode={'off'}
+          autoFocus={'on'}
+          captureAudio={false}
+          useNativeZoom={true}
+          onMountError={this.onCameraMountError}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message:
+              'We need your permission to use your camera. The app does not work without this.',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}>
+          {this.renderTimer()}
+          {this.renderControls()}
+        </RNCamera>
+      </>
     );
   }
 }

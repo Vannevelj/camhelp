@@ -16,8 +16,10 @@
   "dependencies": {
     "@react-native-community/cameraroll": "^4.0.1",
     "@sentry/react-native": "^2.1.0",
+    "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-animated-loader": "^0.0.8",
     "react-native-camera": "^3.40.0",
     "react-native-navigation": "^7.6.0",
     "react-native-orientation-locker": "^1.2.0",
