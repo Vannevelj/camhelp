@@ -55,7 +55,6 @@ export default class Camera extends NavigationComponent<Props, State> {
   private takePictures = async () => {
     try {
       this.setState({isTakingPictures: true});
-      console.log('yes, taking pictures');
       var first = await this.takePicture();
       var second = await this.takePicture();
       var third = await this.takePicture();
@@ -72,7 +71,6 @@ export default class Camera extends NavigationComponent<Props, State> {
       Sentry.captureException(err);
     } finally {
       this.setState({isTakingPictures: false});
-      console.log('no, not taking pictures');
     }
   };
 
