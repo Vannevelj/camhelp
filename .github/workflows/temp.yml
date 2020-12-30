@@ -48,7 +48,7 @@ jobs:
         name: Sign aab
         id: sign_app
         with:
-          releaseDirectory: android/app/build/outputs/aab/release/
+          releaseDirectory: android/app/build/outputs/bundle/release/
           signingKeyBase64: ${{ secrets.SIGNING_KEY_JKS_BASE64 }}
           alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEY_KEYSTORE_PASSWORD }}
