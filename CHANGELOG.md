@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.2.3] - 2020-12-30
+
+- Release app in .aab format
+
 ## [1.2.2] - 2020-12-29
 
 - Removed unnecessary bundle file from repo
