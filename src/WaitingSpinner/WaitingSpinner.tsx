@@ -4,8 +4,6 @@ import {Text} from 'react-native';
 import styles from './styles';
 import overlay from './loader.json';
 import Trans from '../TextHelper';
-
-// TODO: REPLACE WHEN THIS PR IS MERGED: https://github.com/vikrantnegi/react-native-animated-loader/pull/8
 //@ts-expect-error
 import AnimatedLoader from 'react-native-animated-loader';
 

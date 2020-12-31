@@ -22,6 +22,6 @@ export default class TextHelper {
       return preferredLanguage;
     }
 
-    return text['en'];
+    return text.en;
   };
 }
