@@ -5,7 +5,8 @@ import styles from './styles';
 import overlay from './loader.json';
 
 // TODO: REPLACE WHEN THIS PR IS MERGED: https://github.com/vikrantnegi/react-native-animated-loader/pull/8
-import AnimatedLoader from './AnimatedLoader';
+//@ts-expect-error
+import AnimatedLoader from 'react-native-animated-loader';
 
 interface Props {
   visible: boolean;
