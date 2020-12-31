@@ -46,7 +46,7 @@ export default class Picker extends NavigationComponent<Props, State> {
     };
   }
 
-  public async componentDidMount() {
+  public componentDidMount() {
     ScreenOrientation.lockToPortrait();
   }
 
