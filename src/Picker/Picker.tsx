@@ -17,6 +17,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import ScreenOrientation from 'react-native-orientation-locker';
 import * as Sentry from '@sentry/react-native';
 import Trans from '../TextHelper';
+import InAppReview from 'react-native-in-app-review';
+import Storage from '../StorageHelper';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -24,7 +26,6 @@ export interface Props extends NavigationComponentProps {
 
 interface State {
   selectedIndex: number;
-  isSaving: boolean;
 }
 
 export default class Picker extends NavigationComponent<Props, State> {
@@ -42,11 +43,10 @@ export default class Picker extends NavigationComponent<Props, State> {
     this.carouselRef = React.createRef();
     this.state = {
       selectedIndex: 0,
-      isSaving: false,
     };
   }
 
-  public componentDidMount() {
+  public async componentDidMount() {
     ScreenOrientation.lockToPortrait();
   }
 
@@ -67,19 +67,33 @@ export default class Picker extends NavigationComponent<Props, State> {
   };
 
   private save = async () => {
-    this.setState({isSaving: true});
     if (Platform.OS === 'android' && !(await this.hasAndroidPermission())) {
       return;
+    }
+
+    const picturesTakenStorage = await Storage.get('pictures-taken');
+    let picturesTaken = 0;
+    if (picturesTakenStorage) {
+      picturesTaken = parseInt(picturesTakenStorage, 10);
     }
 
     const tag = this.props.images[this.state.selectedIndex];
     try {
       await CameraRoll.save(tag);
+      await Storage.set('pictures-taken', (++picturesTaken).toString());
       this.goToCamera();
+      if (picturesTaken >= 5 && InAppReview.isAvailable()) {
+        const hasPreviouslyRequestedReview = await Storage.get(
+          'review-requested',
+        );
+        if (!hasPreviouslyRequestedReview) {
+          console.log('Requesting app review');
+          InAppReview.RequestInAppReview();
+          await Storage.set('review-requested', 'true');
+        }
+      }
     } catch (err) {
       Sentry.captureException(err);
-    } finally {
-      this.setState({isSaving: false});
     }
   };
 
