@@ -11,6 +11,7 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Sentry from '@sentry/react-native';
 import WaitingSpinner from '../WaitingSpinner/WaitingSpinner';
+import Trans from '../TextHelper';
 
 interface Props extends NavigationComponentProps {}
 interface State {
@@ -156,11 +157,10 @@ export default class Camera extends NavigationComponent<Props, State> {
           useNativeZoom={true}
           onMountError={this.onCameraMountError}
           androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message:
-              'We need your permission to use your camera. The app does not work without this.',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
+            title: Trans.t('camera.permission.title'),
+            message: Trans.t('camera.permission.message'),
+            buttonPositive: Trans.t('camera.permission.ok'),
+            buttonNegative: Trans.t('camera.permission.cancel'),
           }}>
           {this.renderTimer()}
           {this.renderControls()}

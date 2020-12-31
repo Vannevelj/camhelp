@@ -2,9 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
-## [1.3.1] - 2020-12-31
+## [1.4.0] - 2020-12-31
 
-- Don't embed AnimatedLoader
+- The app is now translated in Dutch
+- Don't embed the AnimatedLoader file
 
 ## [1.3.0] - 2020-12-30
 
