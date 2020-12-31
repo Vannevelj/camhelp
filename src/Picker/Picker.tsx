@@ -16,6 +16,7 @@ import {Notice} from '../Notice/Notice';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ScreenOrientation from 'react-native-orientation-locker';
 import * as Sentry from '@sentry/react-native';
+import Trans from '../TextHelper';
 
 export interface Props extends NavigationComponentProps {
   images: string[];
@@ -103,11 +104,7 @@ export default class Picker extends NavigationComponent<Props, State> {
     return (
       <View style={styles.container}>
         <View>
-          <Notice
-            message={
-              'Select the image you wish to save. Afterwards it will be available in your photo gallery.'
-            }
-          />
+          <Notice message={Trans.t('picker.notice')} />
           <Carousel
             ref={this.carouselRef}
             data={this.props.images}
@@ -128,14 +125,14 @@ export default class Picker extends NavigationComponent<Props, State> {
         <TouchableOpacity
           onPress={this.save}
           style={styles.saveButtonContainer}>
-          <Text style={styles.saveButtonText}>Save</Text>
+          <Text style={styles.saveButtonText}>{Trans.t('picker.save')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={this.goToCamera}
           style={styles.retryButtonContainer}>
           <Icon name="autorenew" size={30} color="red" />
-          <Text style={styles.retryButtonText}>New picture</Text>
+          <Text style={styles.retryButtonText}>{Trans.t('picker.retry')}</Text>
         </TouchableOpacity>
       </View>
     );

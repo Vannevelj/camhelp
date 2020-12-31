@@ -3,9 +3,11 @@ import {FunctionComponent} from 'react';
 import {Text} from 'react-native';
 import styles from './styles';
 import overlay from './loader.json';
+import Trans from '../TextHelper';
 
 // TODO: REPLACE WHEN THIS PR IS MERGED: https://github.com/vikrantnegi/react-native-animated-loader/pull/8
-import AnimatedLoader from './AnimatedLoader';
+//@ts-expect-error
+import AnimatedLoader from 'react-native-animated-loader';
 
 interface Props {
   visible: boolean;
@@ -22,7 +24,9 @@ const WaitingSpinner: FunctionComponent<Props> = ({visible}) => (
           source={overlay}
           animationStyle={styles.overlay}
           speed={0.75}>
-          <Text style={styles.message}>Taking pictures...</Text>
+          <Text style={styles.message}>
+            {Trans.t('waiting-spinner.message')}
+          </Text>
         </AnimatedLoader>
       </>
     )}
