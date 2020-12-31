@@ -1,34 +1,34 @@
 {
     "camera.permission.title": {
-        "en-GB": "Permission to use camera",
-        "nl-BE": "Camera gebruik toelaten"
+        "en": "Permission to use camera",
+        "nl": "Camera gebruik toelaten"
     },
     "camera.permission.message": {
-        "en-GB": "We need your permission to use your camera. The app does not work without this.",
-        "nl-BE": "We hebben uw toestemming nodig om de camera te gebruiken. Zonder dit werkt de app niet."
+        "en": "We need your permission to use your camera. The app does not work without this.",
+        "nl": "We hebben uw toestemming nodig om de camera te gebruiken. Zonder dit werkt de app niet."
     },
     "camera.permission.ok": {
-        "en-GB": "Ok",
-        "nl-BE": "Ok"
+        "en": "Ok",
+        "nl": "Ok"
     },
     "camera.permission.cancel": {
-        "en-GB": "Cancel",
-        "nl-BE": "Annuleren"
+        "en": "Cancel",
+        "nl": "Annuleren"
     },
     "picker.notice": {
-        "en-GB": "Select the image you wish to save. Afterwards it will be available in your photo gallery.",
-        "nl-BE": "Selecteer de foto die je wilt opslaan. Nadien zal deze beschikbaar zijn in je gallerij."
+        "en": "Select the image you wish to save. Afterwards it will be available in your photo gallery.",
+        "nl": "Selecteer de foto die je wilt opslaan. Nadien zal deze beschikbaar zijn in je gallerij."
     },
     "picker.save": {
-        "en-GB": "Save",
-        "nl-BE": "Opslaan"
+        "en": "Save",
+        "nl": "Opslaan"
     },
     "picker.retry": {
-        "en-GB": "New picture",
-        "nl-BE": "Nieuwe foto"
+        "en": "New picture",
+        "nl": "Nieuwe foto"
     },
     "waiting-spinner.message": {
-        "en-GB": "Taking pictures...",
-        "nl-BE": "Foto's nemen..."
+        "en": "Taking pictures...",
+        "nl": "Foto's nemen..."
     }
 }
