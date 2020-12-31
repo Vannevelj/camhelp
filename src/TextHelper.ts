@@ -1,7 +1,7 @@
 import translations from './translations.json';
 import * as RNLocalize from 'react-native-localize';
 
-type translationKeys = keyof typeof translations;
+type TranslationKeys = keyof typeof translations;
 
 export default class TextHelper {
   public static locale: string = 'en-GB';
@@ -14,7 +14,7 @@ export default class TextHelper {
     console.log(`Enabling ${TextHelper.locale} as locale`);
   };
 
-  public static t = (key: translationKeys) => {
+  public static t = (key: TranslationKeys) => {
     const text = (translations as any)[key];
 
     const preferredLanguage = text[TextHelper.locale];

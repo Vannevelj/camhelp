@@ -19,3 +19,7 @@ Contributions are welcome, though keep them relevant: feature improvements are w
 To get started you just need to clone the repo and run `yarn go` -- that's it.
 
 I have set up an elaborate Github Actions pipeline which allows me to just merge any PR and a new version will automatically become available on the Play Store. All you need to do is make sure the CHANGELOG is updated, no other non-feature changes are required on your side.
+
+### I want to contribute a translation
+
+Wonderful! All you need to do is make your changes to the https://github.com/Vannevelj/camhelp/blob/master/src/translations.json file and send a PR in.
