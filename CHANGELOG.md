@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.5.1] - 2020-01-25
+
+- Cancel stale builds
+
 ## [1.5.0] - 2020-12-31
 
 - After a few saved images the app will now prompt the user to leave an app store review
