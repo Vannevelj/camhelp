@@ -2,6 +2,10 @@ name: Build, Lint, Test React Native
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.head_ref }}-build
+  cancel-in-progress: true
+
 jobs:
   build-rn:
     name: Compile and lint Typescript

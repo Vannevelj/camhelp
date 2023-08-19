@@ -2,6 +2,10 @@ name: Attach apk builds
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.head_ref }}-apk
+  cancel-in-progress: true
+
 jobs:
   build-apk:
     name: Build the .apk
