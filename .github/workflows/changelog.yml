@@ -2,6 +2,10 @@ name: Changelog Check
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.head_ref }}-changelog
+  cancel-in-progress: true
+
 jobs:
   build-changelog:
     name: Verify if CHANGELOG was updated

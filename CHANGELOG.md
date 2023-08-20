@@ -2,6 +2,10 @@
 
 https://keepachangelog.com/en/1.0.0/
 
+## [1.6.0] - 2023-08-19
+
+- Target SDK version 33
+
 ## [1.5.1] - 2020-01-25
 
 - Cancel stale builds
